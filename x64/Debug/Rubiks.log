@@ -1,2 +1,14 @@
-﻿  cube.cpp
+﻿  Cube.cpp
+  Application.cpp
+C:\Users\user\Desktop\Rubiks\src\Application.cpp(13,12): warning C4101: 'shader': unreferenced local variable
+C:\Users\user\Desktop\Rubiks\src\Application.cpp(10,17): warning C4101: 'va': unreferenced local variable
+C:\Users\user\Desktop\Rubiks\src\Application.cpp(11,17): warning C4101: 'ib': unreferenced local variable
+  IndexBuffer.cpp
+  Shader.cpp
+  VertexArray.cpp
+  VertexBuffer.cpp
+  VertexBufferLayout.cpp
+  Window.cpp
+  Generating Code...
+  glad.c
   Rubiks.vcxproj -> C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe

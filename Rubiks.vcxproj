@@ -151,12 +151,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\cube.cpp" />
-    <ClCompile Include="src\glad.c" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Cube.cpp" />
+    <ClCompile Include="glad.c" />
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\IndexBuffer.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\VertexArray.cpp" />
+    <ClCompile Include="src\VertexBuffer.cpp" />
+    <ClCompile Include="src\VertexBufferLayout.cpp" />
+    <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\cube.h" />
+    <ClInclude Include="src\Cube.hpp" />
+    <ClInclude Include="src\IndexBuffer.hpp" />
+    <ClInclude Include="src\Shader.hpp" />
+    <ClInclude Include="src\VertexArray.hpp" />
+    <ClInclude Include="src\VertexBuffer.hpp" />
+    <ClInclude Include="src\VertexBufferLayout.hpp" />
+    <ClInclude Include="src\Window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
