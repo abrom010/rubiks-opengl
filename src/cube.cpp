@@ -72,15 +72,12 @@ Cube::Color Cube::getCenter(std::vector<std::vector<Color>>& face)
 
 void Cube::printCube()
 {
-    /*for (std::vector<std::vector<Cube::Color>>& face : faces)
-    {*/
     printFace(whiteFace);
-    printFace(redFace);
-    printFace(blueFace);
+    printFace(greenFace);
     printFace(orangeFace);
     printFace(yellowFace);
-    printFace(greenFace);
-    //}
+    printFace(blueFace);
+    printFace(redFace);
 }
 
 void Cube::printFace(std::vector<std::vector<Cube::Color>> face)
@@ -94,6 +91,7 @@ void Cube::printFace(std::vector<std::vector<Cube::Color>> face)
         }
         std::cout << std::endl;
     }
+    std::cout << "---------------" << std::endl;
 }
 
 void Cube::rotateFace(std::vector<std::vector<Cube::Color>>& face, bool clockwise)
@@ -139,6 +137,8 @@ void Cube::rotateFront(std::vector<std::vector<Color>>& face, bool clockwise)
 }
 void Cube::rotateEdges(std::vector<std::vector<Color>>& face, bool clockwise)
 {
+    // IMPORTANT: right now every rotation is affecting the 0th column of other faces
+    //           need to hard code each case individually
     if (clockwise)
     {
         if (getCenter(face) == Color::white)
@@ -152,10 +152,18 @@ void Cube::rotateEdges(std::vector<std::vector<Color>>& face, bool clockwise)
         else if (getCenter(face) == Color::green)
         {
             std::vector<Color> temp = whiteFace[0];
-            whiteFace[0] = orangeFace[0];
-            orangeFace[0] = yellowFace[0];
+
+            // column
+            whiteFace[0][2] = orangeFace[0][2];
+            whiteFace[1][2] = orangeFace[1][2];
+            whiteFace[2][2] = orangeFace[2][2];
+
+            orangeFace[2] = yellowFace[0];
             yellowFace[0] = redFace[0];
-            redFace[0] = temp;
+
+            redFace[0][0] = temp[2];
+            redFace[1][0] = temp[1];
+            redFace[2][0] = temp[0];
         }
         else if (getCenter(face) == Color::orange)
         {
@@ -164,35 +172,82 @@ void Cube::rotateEdges(std::vector<std::vector<Color>>& face, bool clockwise)
             blueFace[0] = yellowFace[0];
             yellowFace[0] = greenFace[0];
             greenFace[0] = temp;
-        }/*
-        else if (getCenter(face) == Cube::Cube::Color::yellow)
-        {
-            std::vector<Cube::Color> temp = redFace[0];
-            redFace[0] = whiteFace[0];
-            whiteFace[0] = orangeFace[0];
-            orangeFace[0] = yellowFace[0];
-            yellowFace[0] = temp;
         }
-        else if (getCenter(face) == Cube::Cube::Color::blue)
+        else if (getCenter(face) == Color::yellow)
         {
-            std::vector<Cube::Color> temp = redFace[0];
-            redFace[0] = whiteFace[0];
-            whiteFace[0] = orangeFace[0];
-            orangeFace[0] = yellowFace[0];
-            yellowFace[0] = temp;
+            std::vector<Color> temp = redFace[2];
+            redFace[2] = greenFace[2];
+            greenFace[2] = orangeFace[2];
+            orangeFace[2] = blueFace[2];
+            blueFace[2] = temp;
         }
-        else if (getCenter(face) == Cube::Cube::Color::red)
+        else if (getCenter(face) == Color::blue)
         {
-            std::vector<Cube::Color> temp = redFace[0];
-            redFace[0] = whiteFace[0];
-            whiteFace[0] = orangeFace[0];
-            orangeFace[0] = yellowFace[0];
-            yellowFace[0] = temp;
-        }*/
+            std::vector<Color> temp = whiteFace[0];
+            whiteFace[0] = redFace[0];
+            redFace[0] = yellowFace[0];
+            yellowFace[0] = orangeFace[0];
+            orangeFace[0] = temp;
+        }
+        else if (getCenter(face) == Color::red)
+        {
+            std::vector<Color> temp = whiteFace[0];
+            whiteFace[0] = greenFace[0];
+            greenFace[0] = yellowFace[0];
+            yellowFace[0] = blueFace[0];
+            blueFace[0] = temp;
+        }
     }
     else
     {
-
+        if (getCenter(face) == Color::white)
+        {
+            std::vector<Color> temp = redFace[0];
+            redFace[0] = greenFace[0];
+            greenFace[0] = orangeFace[0];
+            orangeFace[0] = blueFace[0];
+            blueFace[0] = temp;
+        }
+        else if (getCenter(face) == Color::green)
+        {
+            std::vector<Color> temp = whiteFace[0];
+            whiteFace[0] = redFace[0];
+            redFace[0] = yellowFace[0];
+            yellowFace[0] = orangeFace[2];
+            orangeFace[2] = temp;
+        }
+        else if (getCenter(face) == Color::orange)
+        {
+            std::vector<Color> temp = whiteFace[0];
+            whiteFace[0] = greenFace[0];
+            greenFace[0] = yellowFace[0];
+            yellowFace[0] = blueFace[0];
+            blueFace[0] = temp;
+        }
+        else if (getCenter(face) == Color::yellow)
+        {
+            std::vector<Color> temp = redFace[2];
+            redFace[2] = blueFace[0];
+            blueFace[0] = orangeFace[0];
+            orangeFace[0] = greenFace[0];
+            greenFace[0] = temp;
+        }
+        else if (getCenter(face) == Color::blue)
+        {
+            std::vector<Color> temp = whiteFace[0];
+            whiteFace[0] = orangeFace[0];
+            orangeFace[0] = yellowFace[0];
+            yellowFace[0] = redFace[0];
+            redFace[0] = temp;
+        }
+        else if (getCenter(face) == Color::red)
+        {
+            std::vector<Color> temp = whiteFace[0];
+            whiteFace[0] = blueFace[0];
+            blueFace[0] = yellowFace[0];
+            yellowFace[0] = greenFace[0];
+            greenFace[0] = temp;
+        }
     }
 }
 
@@ -209,19 +264,11 @@ bool Cube::isFaceSolved(std::vector<std::vector<Color>> face)
     return true;
 }
 
-//int main() {
-//    std::cout << isFaceSolved(redFace) << std::endl;
-//    std::cout << isFaceSolved(whiteFace) << std::endl;
-//    rotateFace(redFace, true);
-//
-//    for (int i = 0; i < 3; i++)
-//    {
-//        for (int j = 0; j < 3; j++)
-//        {
-//            printColor(whiteFace[i][j]);
-//        }
-//    }
-//
-//    //printCube();
-//    return 0;
-//}
+int main() {
+    Cube cube;
+    cube.rotateFace(cube.whiteFace, true);
+    cube.rotateFace(cube.yellowFace, true);
+    cube.printCube();
+
+    return 0;
+}
