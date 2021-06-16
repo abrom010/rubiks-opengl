@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "DebugOpenGL.hpp"
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -28,6 +30,9 @@ Window::Window(int width, int height, const char* title)
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		glfwSetWindowShouldClose(this->glfwWindow, true);
 	}
+
+	GLCall(glEnable(GL_BLEND));
+	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
 Window::~Window()

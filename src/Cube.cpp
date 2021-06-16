@@ -312,13 +312,13 @@ bool Cube::isFaceSolved(std::vector<std::vector<Color>> face)
 	return true;
 }
 
-int main() {
-	Cube cube;
-	cube.rotateFace(cube.whiteFace, true);
-	cube.rotateFace(cube.greenFace, true);
-	cube.rotateFace(cube.orangeFace, true);
-	cube.rotateFace(cube.yellowFace, true);
-	cube.printCube();
-
-	return 0;
-}
+//int main() {
+//	Cube cube;
+//	cube.rotateFace(cube.whiteFace, true);
+//	cube.rotateFace(cube.greenFace, true);
+//	cube.rotateFace(cube.orangeFace, true);
+//	cube.rotateFace(cube.yellowFace, true);
+//	cube.printCube();
+//
+//	return 0;
+//}
