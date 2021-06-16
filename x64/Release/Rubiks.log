@@ -1,0 +1,16 @@
+﻿  glad.c
+  Cube.cpp
+  DebugOpenGL.cpp
+  IndexBuffer.cpp
+  Main.cpp
+  Shader.cpp
+  VertexArray.cpp
+C:\Users\user\Desktop\Rubiks\src\VertexArray.cpp(25,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  VertexBuffer.cpp
+  Window.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 355 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Rubiks.vcxproj -> C:\Users\user\Desktop\Rubiks\x64\Release\Rubiks.exe

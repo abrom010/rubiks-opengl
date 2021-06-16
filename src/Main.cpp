@@ -6,9 +6,9 @@
 #include "Shader.hpp"
 #include "Renderer.hpp"
 
-float positions[] =
+float vertices[] =
 {
-   -0.5f, -0.5f, 0.0f, 0.0f, // 0
+   -0.5f, -0.5f, 0.0f, 0.0f,
    0.5f, -0.5f, 0.0f, 0.0f,
    0.0f, 0.5f, 0.0f, 0.0f
 };
@@ -23,7 +23,7 @@ int main()
 	Window window(800, 600, "Rubiks");
 
 	VertexArray va;
-	VertexBuffer vb(positions, 3 * 4 * sizeof(float));
+	VertexBuffer vb(vertices, 3 * 4 * sizeof(float));
 
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
