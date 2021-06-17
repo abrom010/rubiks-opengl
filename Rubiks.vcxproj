@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cube.hpp" />
+    <ClInclude Include="src\Data.hpp" />
     <ClInclude Include="src\DebugOpenGL.hpp" />
     <ClInclude Include="src\IndexBuffer.hpp" />
     <ClInclude Include="src\Renderer.hpp" />

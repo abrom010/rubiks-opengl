@@ -1,3 +1,6 @@
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "Window.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
@@ -8,31 +11,28 @@
 
 #include "Cube.hpp"
 
-float vertices[] =
-{
-   -0.5f, -0.5f, 0.0f, 0.0f,
-   0.5f, -0.5f, 0.0f, 0.0f,
-   0.0f, 0.5f, 0.0f, 0.0f
-};
+#include "Data.hpp"
 
-unsigned int indices[] =
-{
-	0, 1, 2
-};
+int WIDTH = 800;
+int HEIGHT = 600;
 
 void GraphicsStuff()
 {
-	Window window(800, 600, "Rubiks");
+	Window window(WIDTH, HEIGHT, "Rubiks");
 
 	VertexArray va;
-	VertexBuffer vb(vertices, 3 * 4 * sizeof(float));
+	VertexBuffer vb(vertices, 4 * 4 * sizeof(float));
 
 	VertexBufferLayout layout;
 	layout.Push<float>(2);
 	layout.Push<float>(2);
 	va.AddBuffer(vb, layout);
 
-	IndexBuffer ib(indices, 3);
+	IndexBuffer ib(indices, 6);
+
+	glm::mat4 proj = glm::perspective(90.0f, (GLfloat)WIDTH / (GLfloat)HEIGHT, 1.0f, 150.0f);
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+	glm::vec3 translation = glm::vec3(0, 0, 0);
 
 	/*glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
@@ -52,7 +52,7 @@ void GraphicsStuff()
 
 int main()
 {
-	bool doGraphics = false;
+	bool doGraphics = true;
 	if (doGraphics)
 		GraphicsStuff();
 
