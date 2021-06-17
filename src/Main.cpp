@@ -6,6 +6,8 @@
 #include "Shader.hpp"
 #include "Renderer.hpp"
 
+#include "Cube.hpp"
+
 float vertices[] =
 {
    -0.5f, -0.5f, 0.0f, 0.0f,
@@ -18,7 +20,7 @@ unsigned int indices[] =
 	0, 1, 2
 };
 
-int main()
+void GraphicsStuff()
 {
 	Window window(800, 600, "Rubiks");
 
@@ -47,3 +49,22 @@ int main()
 		window.Update();
 	}
 }
+
+int main()
+{
+	bool doGraphics = false;
+	if (doGraphics)
+		GraphicsStuff();
+
+	else
+	{
+		Cube cube;
+		cube.rotateFace(cube.whiteFace, true);
+		cube.rotateFace(cube.greenFace, true);
+		cube.rotateFace(cube.orangeFace, true);
+		cube.rotateFace(cube.yellowFace, true);
+		cube.printCube();
+	}
+}
+	
+
