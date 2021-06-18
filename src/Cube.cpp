@@ -1,42 +1,43 @@
 #include "Cube.hpp"
+#
 
 Cube::Cube()
 {
 	Cube::whiteFace =
 	{
-	  {Color::green, Color::orange, Color::green},
-	  {Color::green, Color::white, Color::green},
-	  {Color::green, Color::red, Color::green}
+	  {Color::white, Color::white, Color::white},
+	  {Color::white, Color::white, Color::white},
+	  {Color::white, Color::white, Color::white}
 	};
 	Cube::redFace =
 	{
-	  {Color::white, Color::white, Color::white},
 	  {Color::red, Color::red, Color::red},
-	  {Color::yellow, Color::yellow, Color::yellow}
+	  {Color::red, Color::red, Color::red},
+	  {Color::red, Color::red, Color::red}
 	};
 	Cube::blueFace =
 	{
-	  {Color::orange, Color::blue, Color::orange},
-	  {Color::white, Color::blue, Color::white},
-	  {Color::red, Color::blue, Color::red}
+	  {Color::blue, Color::blue, Color::blue},
+	  {Color::blue, Color::blue, Color::blue},
+	  {Color::blue, Color::blue, Color::blue}
 	};
 	Cube::yellowFace =
 	{
-	  {Color::blue, Color::red, Color::blue},
-	  {Color::blue, Color::yellow, Color::blue},
-	  {Color::blue, Color::orange, Color::blue}
+	  {Color::yellow, Color::yellow, Color::yellow},
+	  {Color::yellow, Color::yellow, Color::yellow},
+	  {Color::yellow, Color::yellow, Color::yellow}
 	};
 	Cube::orangeFace =
 	{
-	  {Color::yellow, Color::orange, Color::white},
-	  {Color::yellow, Color::orange, Color::white},
-	  {Color::yellow, Color::orange, Color::white}
+	  {Color::orange, Color::orange, Color::orange},
+	  {Color::orange, Color::orange, Color::orange},
+	  {Color::orange, Color::orange, Color::orange}
 	};
 	Cube::greenFace =
 	{
-	  {Color::red, Color::green, Color::red},
-	  {Color::yellow, Color::green, Color::yellow},
-	  {Color::orange, Color::green, Color::orange}
+	  {Color::green, Color::green, Color::green},
+	  {Color::green, Color::green, Color::green},
+	  {Color::green, Color::green, Color::green}
 	};
 }
 
@@ -80,7 +81,7 @@ void Cube::printCube()
 	printFace(redFace);
 }
 
-void Cube::printFace(std::vector<std::vector<Cube::Color>> face)
+void Cube::printFace(std::vector<std::vector<Cube::Color>>& face)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -92,6 +93,58 @@ void Cube::printFace(std::vector<std::vector<Cube::Color>> face)
 		std::cout << std::endl;
 	}
 	std::cout << "---------------" << std::endl;
+}
+
+void Cube::scramble()
+{
+	srand(time(NULL));
+	bool rotation;
+	int i;
+	int x;
+
+	for (int j = 0; j < 20; j++)
+	{
+		i = rand() % 2 + 1;
+		if (i == 1)
+		{
+			rotation = true;
+		}
+		else
+		{
+			rotation = false;
+		}
+
+		x = rand() % 6 + 1;
+		
+		switch (x)
+		{
+		case 1:
+			rotateFace(whiteFace, rotation);
+			break;
+		case 2:
+			rotateFace(greenFace, rotation);
+			break;
+		case 3:
+			rotateFace(orangeFace, rotation);
+			break;
+		case 4:
+			rotateFace(yellowFace, rotation);
+			break;
+		case 5:
+			rotateFace(blueFace, rotation);
+			break;
+		case 6:
+			rotateFace(redFace, rotation);
+			break;
+		default:
+			break;
+		}		
+	}
+}
+
+void Cube::solve()	//todo
+{
+	
 }
 
 void Cube::rotateFace(std::vector<std::vector<Cube::Color>>& face, bool clockwise)
@@ -128,22 +181,7 @@ void Cube::rotateFront(std::vector<std::vector<Color>>& face)
 	face[1][0] = face[2][1];
 	face[2][1] = face[1][2];
 	face[1][2] = temp;
-	//}
-	/*else
-	{
-		//Corners
-		Color temp = face[0][0];
-		face[0][0] = face[0][2];
-		face[0][2] = face[2][2];
-		face[2][2] = face[2][0];
-		face[2][0] = temp;
-		//Edges
-		temp = face[0][1];
-		face[2][1] = face[1][0];
-		face[1][2] = face[2][1];
-		face[0][1] = face[1][2];
-		face[0][1] = temp;
-	}*/
+
 }
 void Cube::rotateEdges(std::vector<std::vector<Color>>& face)
 {
@@ -277,7 +315,7 @@ void Cube::rotateEdges(std::vector<std::vector<Color>>& face)
 }
 
 
-bool Cube::isFaceSolved(std::vector<std::vector<Color>> face)
+bool Cube::isFaceSolved(std::vector<std::vector<Color>>& face)
 {
 	for (int i = 0; i < 3; i++)
 	{

@@ -1,1 +1,4 @@
 *.opendb
+**/AutoPCH
+**/x64
+**/Debug
