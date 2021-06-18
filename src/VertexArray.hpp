@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include "VertexBuffer.hpp"
 
 class VertexBufferLayout;

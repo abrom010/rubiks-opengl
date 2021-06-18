@@ -1,13 +1,11 @@
 #pragma once
 
 #include "DebugOpenGL.hpp"
-#include "VertexArray.hpp"
-#include "IndexBuffer.hpp"
-#include "Shader.hpp"
 
 namespace Renderer {
-	static void Clear()
+	static void Clear(float r, float g, float b, float a)
 	{
+		GLCall(glClearColor(r, g, b, a));
 		GLCall(glClear(GL_COLOR_BUFFER_BIT));
 	}
 
