@@ -61,10 +61,8 @@ int main()
 	else
 	{
 		Cube cube;
-		cube.rotateFace(cube.whiteFace, true);
-		cube.rotateFace(cube.greenFace, true);
-		cube.rotateFace(cube.orangeFace, true);
-		cube.rotateFace(cube.yellowFace, true);
+		cube.printCube();
+		cube.scramble();
 		cube.printCube();
 	}
 }

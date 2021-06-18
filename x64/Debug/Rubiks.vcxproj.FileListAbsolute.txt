@@ -1,2 +1,3 @@
 C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe
 C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.pdb
+C:\Personal\Code\rubiks\x64\Debug\Rubiks.exe
