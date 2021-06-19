@@ -1,6 +1,3 @@
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
 #include "Window.hpp"
 #include "VertexArray.hpp"
 #include "VertexBuffer.hpp"
@@ -13,7 +10,9 @@
 
 void GraphicsStuff()
 {
-	Window window(Renderer::WIDTH, Renderer::HEIGHT, "Rubiks");
+	Renderer renderer(800, 600);
+
+	Window window(renderer.width, renderer.height, "Rubiks");
 
 	Cube cube;
 
@@ -21,8 +20,8 @@ void GraphicsStuff()
 	{
 		window.ProcessInput();
 
-		Renderer::Clear(0.3f, 0.3f, 0.3f, 1.0f);
-		Renderer::DrawRubiks(cube);
+		renderer.Clear(0.2f, 0.2f, 0.2f, 1.0f);
+		renderer.DrawRubiks(cube);
 
 		window.Update();
 	}

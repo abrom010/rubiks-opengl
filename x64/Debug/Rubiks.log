@@ -1,14 +1,2 @@
-﻿  glad.c
-  Cube.cpp
-C:\Users\user\Desktop\Rubiks\src\Cube.cpp(100,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  DebugOpenGL.cpp
-  IndexBuffer.cpp
-  Main.cpp
-  Shader.cpp
-  VertexArray.cpp
-C:\Users\user\Desktop\Rubiks\src\VertexArray.cpp(25,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
-  VertexBuffer.cpp
-  Window.cpp
-  Generating Code...
-  LINK : C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe not found or not built by the last incremental link; performing full link
+﻿  Main.cpp
   Rubiks.vcxproj -> C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe
