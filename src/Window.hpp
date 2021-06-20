@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Renderer.hpp"
 
 class Window
 {
@@ -12,6 +13,6 @@ public:
 	~Window();
 
 	bool ShouldCloseWindow();
-	void ProcessInput();
+	void ProcessInput(Renderer& renderer);
 	void Update();
 };

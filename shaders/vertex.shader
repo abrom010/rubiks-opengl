@@ -9,7 +9,6 @@ uniform vec4 u_Color;
 
 void main()
 {
-    float scale = 0.1;
-    gl_Position = u_MVP * vec4(position, 1.0) * vec4(scale, scale, scale, 1.0);
+    gl_Position = u_MVP * vec4(position, 1.0);
     vertexColor = u_Color;
 }

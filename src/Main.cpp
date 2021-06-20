@@ -18,7 +18,7 @@ void GraphicsStuff()
 
 	while (!window.ShouldCloseWindow())
 	{
-		window.ProcessInput();
+		window.ProcessInput(renderer);
 
 		renderer.Clear(0.2f, 0.2f, 0.2f, 1.0f);
 		renderer.DrawRubiks(cube);

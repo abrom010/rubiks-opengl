@@ -1,9 +1,16 @@
 #pragma once
 
+#include "VertexArray.hpp"
+#include "IndexBuffer.hpp"
+#include "Shader.hpp"
+#include "VertexBufferLayout.hpp"
+#include "Cube.hpp"
+
 class Renderer
 {
 public:
 	int width, height;
+	float horizontalRotation, verticalRotation;
 
 	Renderer(int width, int height);
 	~Renderer();
