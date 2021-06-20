@@ -55,13 +55,13 @@ void Window::ProcessInput(Renderer& renderer)
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(this->glfwWindow, true);
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
-		renderer.horizontalRotation += -0.1f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		renderer.horizontalRotation += 0.1f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		renderer.horizontalRotation += -0.1f;
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_UP) == GLFW_PRESS)
-		renderer.verticalRotation += -0.1f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
 		renderer.verticalRotation += 0.1f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+		renderer.verticalRotation += -0.1f;
 		
 }
 
