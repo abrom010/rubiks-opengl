@@ -1,5 +1,2 @@
-﻿  Cube.cpp
-  Renderer.cpp
-  Generating Code...
-C:\Users\laptop\Desktop\Rubiks\src\Cube.cpp(128,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Rubiks.vcxproj -> C:\Users\laptop\Desktop\Rubiks\x64\Debug\Rubiks.exe
+﻿  Renderer.cpp
+  Rubiks.vcxproj -> C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe

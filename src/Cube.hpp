@@ -8,10 +8,6 @@ class Cube
 {
 public:
 
-	struct RGBA {
-		float r, g, b, a;
-	};
-
 	Cube();
 
 	//Base state White (top) Yellow (bottom) Green (front) Blue (back) Orange (left) Red (right)
@@ -35,6 +31,4 @@ public:
 	bool isFaceSolved(std::vector<std::vector<Color>>& face);
 	void scramble();
 	void solve();
-
-	RGBA GetColorValue(Color color) const;
 };

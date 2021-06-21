@@ -6,7 +6,7 @@ Cube::Cube()
 {
 	Cube::whiteFace =
 	{
-	  {Color::blue, Color::white, Color::white},
+	  {Color::white, Color::white, Color::white},
 	  {Color::white, Color::white, Color::white},
 	  {Color::white, Color::white, Color::white}
 	};
@@ -38,7 +38,7 @@ Cube::Cube()
 	{
 	  {Color::green, Color::green, Color::green},
 	  {Color::green, Color::green, Color::green},
-	  {Color::white, Color::green, Color::green}
+	  {Color::green, Color::green, Color::green}
 	};
 }
 
@@ -65,33 +65,6 @@ void Cube::printColor(Color color)
 		std::cout << "RED";
 		break;
 	}
-}
-
-Cube::RGBA Cube::GetColorValue(Cube::Color color) const
-{
-	RGBA value;
-	switch (color)
-	{
-	case Cube::Color::white:
-		value = { 1.0f, 1.0f, 1.0f, 1.0f };
-		break;
-	case Cube::Color::green:
-		value = { 0.0f, 1.0f, 0.0f, 1.0f };
-		break;
-	case Cube::Color::orange:
-		value = { 1.0f, 0.65f, 0.0f, 1.0f };
-		break;
-	case Cube::Color::yellow:
-		value = { 1.0f, 1.0f, 0.0f, 1.0f };
-		break;
-	case Cube::Color::blue:
-		value = { 0.0f, 0.0f, 1.0f, 1.0f };
-		break;
-	case Cube::Color::red:
-		value = { 1.0f, 0.0f, 0.0f, 1.0f };
-		break;
-	}
-	return value;
 }
 
 Cube::Color Cube::getCenter(std::vector<std::vector<Color>>& face)

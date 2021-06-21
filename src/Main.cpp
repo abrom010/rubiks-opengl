@@ -15,6 +15,7 @@ void GraphicsStuff()
 	Window window(renderer.width, renderer.height, "Rubiks");
 
 	Cube cube;
+	//cube.rotateFace(cube.greenFace, true);
 	//cube.scramble();
 
 	while (!window.ShouldCloseWindow())
