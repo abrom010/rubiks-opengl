@@ -72,7 +72,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
-			Cube::RGBA color = cube.GetColorValue(cube.whiteFace[i][j]);
+			Cube::RGBA color = cube.GetColorValue(cube.whiteFace[2-j][i]);
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, ib, shader);
 		}
@@ -99,7 +99,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
-			Cube::RGBA color = cube.GetColorValue(cube.greenFace[i][j]);
+			Cube::RGBA color = cube.GetColorValue(cube.greenFace[2 - j][i]);
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, ib, shader);
 		}
@@ -126,7 +126,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
-			Cube::RGBA color = cube.GetColorValue(cube.redFace[i][j]);
+			Cube::RGBA color = cube.GetColorValue(cube.redFace[2 - j][i]);
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, ib, shader);
 		}
@@ -153,7 +153,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
-			Cube::RGBA color = cube.GetColorValue(cube.orangeFace[i][j]);
+			Cube::RGBA color = cube.GetColorValue(cube.orangeFace[2 - j][i]);
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, ib, shader);
 		}
@@ -181,7 +181,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
-			Cube::RGBA color = cube.GetColorValue(cube.blueFace[i][j]);
+			Cube::RGBA color = cube.GetColorValue(cube.blueFace[2 - j][i]);
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, ib, shader);
 		}
@@ -209,7 +209,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
-			Cube::RGBA color = cube.GetColorValue(cube.yellowFace[i][j]);
+			Cube::RGBA color = cube.GetColorValue(cube.yellowFace[2 - j][i]);
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, ib, shader);
 		}

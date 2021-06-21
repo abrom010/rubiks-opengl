@@ -15,7 +15,7 @@ void GraphicsStuff()
 	Window window(renderer.width, renderer.height, "Rubiks");
 
 	Cube cube;
-	cube.scramble();
+	//cube.scramble();
 
 	while (!window.ShouldCloseWindow())
 	{

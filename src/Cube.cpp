@@ -6,7 +6,7 @@ Cube::Cube()
 {
 	Cube::whiteFace =
 	{
-	  {Color::white, Color::white, Color::white},
+	  {Color::blue, Color::white, Color::white},
 	  {Color::white, Color::white, Color::white},
 	  {Color::white, Color::white, Color::white}
 	};
@@ -38,7 +38,7 @@ Cube::Cube()
 	{
 	  {Color::green, Color::green, Color::green},
 	  {Color::green, Color::green, Color::green},
-	  {Color::green, Color::green, Color::green}
+	  {Color::white, Color::green, Color::green}
 	};
 }
 
