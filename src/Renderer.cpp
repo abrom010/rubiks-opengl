@@ -39,7 +39,7 @@ struct RGBA {
 
 RGBA GetColorValue(Cube::Color color)
 {
-	RGBA value;
+	RGBA value = { 0.0f, 0.0f, 0.0f, 1.0f };
 	switch (color)
 	{
 	case Cube::Color::white:
