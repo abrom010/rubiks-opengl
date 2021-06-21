@@ -1,5 +1,6 @@
 #include "Cube.hpp"
-#
+
+#include <ctime>
 
 Cube::Cube()
 {
