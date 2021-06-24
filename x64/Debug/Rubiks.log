@@ -1,8 +1,2 @@
-﻿  Window.cpp
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(74,63): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(75,61): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(76,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(77,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(84,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(85,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Rubiks.vcxproj -> C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe
+﻿  Main.cpp
+  Rubiks.vcxproj -> C:\Personal\Code\rubiks\x64\Debug\Rubiks.exe

@@ -15,7 +15,7 @@ void GraphicsStuff()
 	Window window(renderer.width, renderer.height, "Rubiks");
 
 	Cube cube;
-	//cube.rotateFace(cube.greenFace, true);
+	cube.rotateFace(cube.greenFace, true);
 	//cube.scramble();
 
 	while (!window.ShouldCloseWindow())
@@ -33,14 +33,17 @@ int main()
 {
 	bool doGraphics = true;
 	if (doGraphics)
+	{
 		GraphicsStuff();
-
+		Cube cube;
+		cube.printCube();
+	}
 	else
 	{
 		Cube cube;
 		cube.printCube();
-		cube.scramble();
-		cube.printCube();
+		//cube.scramble();
+		//cube.printCube();
 	}
 }
 	
