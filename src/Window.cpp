@@ -6,6 +6,9 @@
 
 #include "DebugOpenGL.hpp"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -55,32 +58,39 @@ void Window::ProcessInput(Renderer& renderer)
 {
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(this->glfwWindow, true);
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
-		renderer.horizontalRotation += -0.1f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
-		renderer.horizontalRotation += 0.1f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_UP) == GLFW_PRESS)
-		renderer.verticalRotation += -0.1f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
-		renderer.verticalRotation += 0.1f;
+
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_A) == GLFW_PRESS)
+		renderer.horizontalRotation -= 0.05f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_D) == GLFW_PRESS)
+		renderer.horizontalRotation += 0.05f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_W) == GLFW_PRESS)
+		renderer.verticalRotation -= 0.05f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_S) == GLFW_PRESS)
+		renderer.verticalRotation += 0.05f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_E) == GLFW_PRESS)
+		renderer.manualDepthRotation -= 0.05f;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_Q) == GLFW_PRESS)
+		renderer.manualDepthRotation += 0.05f;
 
 	if (glfwGetMouseButton(this->glfwWindow, GLFW_MOUSE_BUTTON_LEFT == GLFW_PRESS))
 	{
-		if (isDragging)
+		if (!isDragging)
 		{
+			this->isDragging = true;
 			double xpos, ypos;
 			glfwGetCursorPos(this->glfwWindow, &xpos, &ypos);
-			float scale = 0.01f;
-			renderer.horizontalRotation += scale * (xpos - lastCursorX);
-			renderer.verticalRotation += scale * (ypos - lastCursorY);
 			lastCursorX = xpos;
 			lastCursorY = ypos;
 		}
 		else
 		{
-			this->isDragging = true;
 			double xpos, ypos;
 			glfwGetCursorPos(this->glfwWindow, &xpos, &ypos);
+
+			float scale = 0.005f;
+			renderer.horizontalRotation = scale * (xpos - lastCursorX);
+			renderer.verticalRotation = scale * (ypos - lastCursorY);
+
 			lastCursorX = xpos;
 			lastCursorY = ypos;
 		}

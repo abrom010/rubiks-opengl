@@ -8,9 +8,12 @@
 
 class Renderer
 {
+private:
+	float yaw, pitch, roll;
 public:
 	int width, height;
 	float horizontalRotation, verticalRotation;
+	float manualDepthRotation;
 
 	Renderer(int width, int height);
 	~Renderer();
@@ -19,4 +22,5 @@ public:
 	void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
 	void DrawRubiks(const Cube& cube);
 
+	void UpdateRotation();
 };
