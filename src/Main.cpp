@@ -12,10 +12,8 @@ int main()
 {
 	Renderer renderer(800, 600);
 
-	Window window(renderer.width, renderer.height, "Rubiks");
-
 	Cube cube;
-	//cube.rotateFace(cube.greenFace, true);
+	Window window(renderer.width, renderer.height, "Rubiks", cube);
 
 	while (!window.ShouldCloseWindow())
 	{

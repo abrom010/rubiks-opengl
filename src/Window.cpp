@@ -15,8 +15,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-Window::Window(int width, int height, const char* title)
-	: lastCursorX(0), lastCursorY(0), isDragging(false), width(width), height(height)
+Window::Window(int width, int height, const char* title, Cube& cube)
+	: lastCursorX(0), lastCursorY(0), isDragging(false), width(width), height(height), cube(cube), w(false), y(false), g(false), b(false), r(false), o(false)
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -59,18 +59,88 @@ void Window::ProcessInput(Renderer& renderer)
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(this->glfwWindow, true);
 
-	/*if (glfwGetKey(this->glfwWindow, GLFW_KEY_A) == GLFW_PRESS)
-		renderer.inputX -= 0.05f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_D) == GLFW_PRESS)
-		renderer.inputX += 0.05f;
+
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_W) == GLFW_PRESS)
-		renderer.inputY -= 0.05f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_S) == GLFW_PRESS)
-		renderer.inputY += 0.05f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_E) == GLFW_PRESS)
-		renderer.inputZ -= 0.05f;
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_Q) == GLFW_PRESS)
-		renderer.inputZ += 0.05f;*/
+	{
+		if (!w)
+		{
+			w = true;
+			if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+				cube.rotateFace(cube.whiteFace, false);
+			else
+				cube.rotateFace(cube.whiteFace, true);
+		}
+			
+	}
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_Y) == GLFW_PRESS)
+	{
+		if (!y)
+		{
+			y = true;
+			if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+				cube.rotateFace(cube.yellowFace, false);
+			else
+				cube.rotateFace(cube.yellowFace, true);
+		}
+		
+	}
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_G) == GLFW_PRESS)
+	{
+		if (!g)
+		{
+			g = true;
+			if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+				cube.rotateFace(cube.greenFace, false);
+			else
+				cube.rotateFace(cube.greenFace, true);
+		}
+	}
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_B) == GLFW_PRESS)
+	{
+		if (!b)
+		{
+			b = true;
+			if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+				cube.rotateFace(cube.blueFace, false);
+			else
+				cube.rotateFace(cube.blueFace, true);
+		}
+	}
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_R) == GLFW_PRESS)
+	{
+		if (!r)
+		{
+			r = true;
+			if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+				cube.rotateFace(cube.redFace, false);
+			else
+				cube.rotateFace(cube.redFace, true);
+		}
+	}
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_O) == GLFW_PRESS)
+	{
+		if (!o)
+		{
+			o = true;
+			if (glfwGetKey(this->glfwWindow, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+				cube.rotateFace(cube.orangeFace, false);
+			else
+				cube.rotateFace(cube.orangeFace, true);
+		}
+	}
+
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_W) == GLFW_RELEASE)
+		w = false;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_Y) == GLFW_RELEASE)
+		y = false;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_G) == GLFW_RELEASE)
+		g = false;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_B) == GLFW_RELEASE)
+		b = false;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_R) == GLFW_RELEASE)
+		r = false;
+	if (glfwGetKey(this->glfwWindow, GLFW_KEY_O) == GLFW_RELEASE)
+		o = false;
 
 	if (glfwGetMouseButton(this->glfwWindow, GLFW_MOUSE_BUTTON_LEFT == GLFW_PRESS))
 	{
@@ -87,8 +157,6 @@ void Window::ProcessInput(Renderer& renderer)
 		{
 			double xpos, ypos;
 			glfwGetCursorPos(this->glfwWindow, &xpos, &ypos);
-
-			//float scale = 0.005f;
 
 			float normalizedLastX = -1.0 + 2.0 * lastCursorX / width;
 			float normalizedLastY = 1.0 - 2.0 * lastCursorY / height;
