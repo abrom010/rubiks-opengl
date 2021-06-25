@@ -10,6 +10,7 @@ private:
 	GLFWwindow* glfwWindow;
 	float lastCursorX, lastCursorY;
 	bool isDragging;
+	int width, height;
 public:
 	Window(int width, int height, const char* title);
 	~Window();

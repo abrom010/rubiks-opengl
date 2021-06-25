@@ -6,14 +6,19 @@
 #include "VertexBufferLayout.hpp"
 #include "Cube.hpp"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+
+#include "Arcball.hpp"
+
 class Renderer
 {
 private:
-	float yaw, pitch, roll;
+	
 public:
 	int width, height;
-	float horizontalRotation, verticalRotation;
-	float manualDepthRotation;
+	ArcballCamera arcball;
 
 	Renderer(int width, int height);
 	~Renderer();
@@ -21,6 +26,4 @@ public:
 	void Clear(float r, float g, float b, float a);
 	void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
 	void DrawRubiks(const Cube& cube);
-
-	void UpdateRotation();
 };

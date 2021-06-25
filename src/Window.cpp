@@ -16,7 +16,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 Window::Window(int width, int height, const char* title)
-	: lastCursorX(0), lastCursorY(0), isDragging(false)
+	: lastCursorX(0), lastCursorY(0), isDragging(false), width(width), height(height)
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -59,18 +59,18 @@ void Window::ProcessInput(Renderer& renderer)
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(this->glfwWindow, true);
 
-	if (glfwGetKey(this->glfwWindow, GLFW_KEY_A) == GLFW_PRESS)
-		renderer.horizontalRotation -= 0.05f;
+	/*if (glfwGetKey(this->glfwWindow, GLFW_KEY_A) == GLFW_PRESS)
+		renderer.inputX -= 0.05f;
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_D) == GLFW_PRESS)
-		renderer.horizontalRotation += 0.05f;
+		renderer.inputX += 0.05f;
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_W) == GLFW_PRESS)
-		renderer.verticalRotation -= 0.05f;
+		renderer.inputY -= 0.05f;
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_S) == GLFW_PRESS)
-		renderer.verticalRotation += 0.05f;
+		renderer.inputY += 0.05f;
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_E) == GLFW_PRESS)
-		renderer.manualDepthRotation -= 0.05f;
+		renderer.inputZ -= 0.05f;
 	if (glfwGetKey(this->glfwWindow, GLFW_KEY_Q) == GLFW_PRESS)
-		renderer.manualDepthRotation += 0.05f;
+		renderer.inputZ += 0.05f;*/
 
 	if (glfwGetMouseButton(this->glfwWindow, GLFW_MOUSE_BUTTON_LEFT == GLFW_PRESS))
 	{
@@ -79,6 +79,7 @@ void Window::ProcessInput(Renderer& renderer)
 			this->isDragging = true;
 			double xpos, ypos;
 			glfwGetCursorPos(this->glfwWindow, &xpos, &ypos);
+			
 			lastCursorX = xpos;
 			lastCursorY = ypos;
 		}
@@ -87,9 +88,15 @@ void Window::ProcessInput(Renderer& renderer)
 			double xpos, ypos;
 			glfwGetCursorPos(this->glfwWindow, &xpos, &ypos);
 
-			float scale = 0.005f;
-			renderer.horizontalRotation = scale * (xpos - lastCursorX);
-			renderer.verticalRotation = scale * (ypos - lastCursorY);
+			//float scale = 0.005f;
+
+			float normalizedLastX = -1.0 + 2.0 * lastCursorX / width;
+			float normalizedLastY = 1.0 - 2.0 * lastCursorY / height;
+
+			float normalizedCurrentX = -1.0 + 2.0 * xpos / width;
+			float normalizedCurrentY = 1.0 - 2.0 * ypos / height;
+
+			renderer.arcball.rotate(glm::vec2(normalizedLastX, normalizedLastY), glm::vec2(normalizedCurrentX, normalizedCurrentY));
 
 			lastCursorX = xpos;
 			lastCursorY = ypos;

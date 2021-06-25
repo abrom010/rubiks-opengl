@@ -1,17 +1,18 @@
 #include "Renderer.hpp"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+
 
 #include "DebugOpenGL.hpp"
 #include "Data.hpp"
 
+#include <glm/gtx/string_cast.hpp>
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 Renderer::Renderer(int width, int height)
-	: yaw(0), pitch(0), roll(0), horizontalRotation(0), verticalRotation(0), manualDepthRotation(0)
+	: width(width), height(height)
 {
-	this->width = width;
-	this->height = height;
 }
 
 Renderer::~Renderer()
@@ -64,69 +65,6 @@ RGBA GetColorValue(Cube::Color color)
 	return value;
 }
 
-void Renderer::UpdateRotation()
-{
-	float tempYaw = (this->yaw * 180.0f) / glm::pi<float>();
-	tempYaw = glm::abs(tempYaw);
-
-	while (tempYaw > 360.0f) tempYaw -= 360.0f;
-
-	bool doPitch = true;
-	bool inverse = false;
-
-	if (tempYaw > 45.0f)
-	{
-		if (tempYaw < 135.0f)
-			doPitch = false;
-		else
-		{
-			if (tempYaw < 315.0f)
-			{
-				inverse = true;
-				if (tempYaw > 225.0f)
-					doPitch = false;
-			}
-		}
-	}
-
-	this->yaw += horizontalRotation;
-
-	if (doPitch)
-	{
-		if (inverse)
-		{
-			this->pitch -= this->verticalRotation;
-			if (manualDepthRotation != 0)
-				this->roll -= this->manualDepthRotation;
-		}
-		else
-		{
-			this->pitch += this->verticalRotation;
-			if (manualDepthRotation != 0)
-				this->roll += this->manualDepthRotation;
-		}		
-	}
-	else
-	{
-		if (inverse)
-		{
-			this->roll -= this->verticalRotation;
-			if (manualDepthRotation != 0)
-				this->pitch += this->manualDepthRotation;
-		}
-		else
-		{
-			this->roll += this->verticalRotation;
-			if (manualDepthRotation != 0)
-				this->pitch -= this->manualDepthRotation;
-		}
-	}
-	
-	this->verticalRotation = 0;
-	this->horizontalRotation = 0;
-	this->manualDepthRotation = 0;
-}
-
 void Renderer::DrawRubiks(const Cube& cube)
 {
 	VertexArray va;
@@ -141,17 +79,11 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 	Shader shader("shaders/vertex.shader", "shaders/fragment.shader");
 
-	float cameraDistance = -12.25f;
+	//float cameraDistance = -12.25f;
 
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)width / (GLfloat)height, 1.0f, 100.0f);
-	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, cameraDistance));
 
-	UpdateRotation();
-
-	view = glm::rotate(view, yaw, glm::vec3(0, 1, 0));
-	view = glm::rotate(view, pitch, glm::vec3(1, 0, 0));
-	view = glm::rotate(view, roll, glm::vec3(0, 0, 1));
-
+	glm::mat4 view = arcball.transform();
 
 	for (int j = 0; j < 3; j++) // front
 	{

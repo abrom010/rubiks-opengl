@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="src\Arcball.cpp" />
     <ClCompile Include="src\Cube.cpp" />
     <ClCompile Include="src\DebugOpenGL.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Arcball.hpp" />
     <ClInclude Include="src\Cube.hpp" />
     <ClInclude Include="src\Data.hpp" />
     <ClInclude Include="src\DebugOpenGL.hpp" />
