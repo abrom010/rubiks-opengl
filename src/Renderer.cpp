@@ -68,14 +68,19 @@ RGBA GetColorValue(Cube::Color color)
 void Renderer::DrawRubiks(const Cube& cube)
 {
 	VertexArray va;
-	VertexBuffer vb(vertices, 4 * 4 * sizeof(float));
 
-	VertexBufferLayout layout;
-	layout.Push<float>(2);
-	layout.Push<float>(2);
-	va.AddBuffer(vb, layout);
+	VertexBuffer squareVertexBuffer(squareVertices, 2 * 4 * sizeof(float));
+	VertexBufferLayout squareLayout;
+	squareLayout.Push<float>(2);
+	va.AddBuffer(squareVertexBuffer, squareLayout);
 
-	IndexBuffer ib(indices, 6);
+	VertexBuffer borderVertexBuffer(borderVertices, 2 * 8 * sizeof(float));
+	VertexBufferLayout borderLayout;
+	borderLayout.Push<float>(2);
+	va.AddBuffer(borderVertexBuffer, borderLayout);
+
+	IndexBuffer squareIndexBuffer(squareIndices, 6);		// 6 per square
+	IndexBuffer borderIndexBuffer(borderIndices, 6 * 4);
 
 	Shader shader("shaders/vertex.shader", "shaders/fragment.shader");
 
@@ -98,8 +103,14 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
 			RGBA color = GetColorValue(cube.whiteFace[i][j]);
-			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, ib, shader);
+
+			//draw square
+			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);*/
+
+			//draw border
+			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
+			Draw(va, borderIndexBuffer, shader);
 		}
 	}
 
@@ -120,8 +131,14 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
 			RGBA color = GetColorValue(cube.blueFace[i][j]);
-			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, ib, shader);
+			
+			//draw square
+			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);*/
+
+			//draw border
+			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
+			Draw(va, borderIndexBuffer, shader);
 		}
 	}
 
@@ -142,8 +159,14 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
 			RGBA color = GetColorValue(cube.greenFace[i][j]);
-			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, ib, shader);
+			
+			//draw square
+			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);*/
+
+			//draw border
+			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
+			Draw(va, borderIndexBuffer, shader);
 		}
 	}
 
@@ -162,8 +185,14 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
 			RGBA color = GetColorValue(cube.yellowFace[i][j]);
-			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, ib, shader);
+			
+			//draw square
+			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);*/
+
+			//draw border
+			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
+			Draw(va, borderIndexBuffer, shader);
 		}
 	}
 
@@ -183,8 +212,14 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
 			RGBA color = GetColorValue(cube.redFace[i][j]);
-			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, ib, shader);
+			
+			//draw square
+			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);*/
+
+			//draw border
+			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
+			Draw(va, borderIndexBuffer, shader);
 		}
 	}
 
@@ -204,8 +239,14 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.Bind();
 			shader.SetUniformMat4f("u_MVP", mvp);
 			RGBA color = GetColorValue(cube.orangeFace[i][j]);
-			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, ib, shader);
+			
+			//draw square
+			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);*/
+
+			//draw border
+			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
+			Draw(va, borderIndexBuffer, shader);
 		}
 	}
 

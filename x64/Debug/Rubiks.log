@@ -1,10 +1,2 @@
-﻿  Window.cpp
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(168,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(169,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(178,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(179,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(181,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(182,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(186,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\user\Desktop\Rubiks\src\Window.cpp(187,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Rubiks.vcxproj -> C:\Users\user\Desktop\Rubiks\x64\Debug\Rubiks.exe
+﻿  Renderer.cpp
+  Rubiks.vcxproj -> C:\Users\laptop\Desktop\Rubiks\x64\Debug\Rubiks.exe

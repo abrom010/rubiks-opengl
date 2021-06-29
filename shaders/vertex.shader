@@ -10,5 +10,5 @@ uniform vec4 u_Color;
 void main()
 {
     gl_Position = u_MVP * vec4(position, 1.0);
-    vertexColor = u_Color;
+	vertexColor = u_Color;
 }
