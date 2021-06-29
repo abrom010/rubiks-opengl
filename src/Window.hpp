@@ -10,7 +10,7 @@ private:
 	GLFWwindow* glfwWindow;
 	float lastCursorX, lastCursorY;
 	bool isDragging, isKeyPressed;
-	bool w, y, g, b, r, o;
+	bool w, y, g, b, r, o, s, u;
 	int width, height;
 	Cube& cube;
 public:

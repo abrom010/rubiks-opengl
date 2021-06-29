@@ -31,4 +31,7 @@ public:
 	bool isFaceSolved(std::vector<std::vector<Color>>& face);
 	void scramble();
 	void solve();
+	void saveMove(std::vector<std::vector<Cube::Color>>& face, bool clockwise);
+	void undo();
+	void undoFace(std::vector<std::vector<Cube::Color>>& face, bool clockwise);
 };
