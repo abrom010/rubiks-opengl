@@ -1,6 +1,13 @@
 #include "Cube.hpp"
-
+#include <list>	//added by Tim for storing list of moves in Scramble
 #include <ctime>
+
+enum class move {
+	whiteCW, whiteCCW, greenCW, greenCCW, orangeCW, orangeCCW,
+	yellowCW, yellowCCW, blueCW, blueCCW, redCW, redCCW, tempMove
+};
+std::list<move> listOfMoves;
+
 
 Cube::Cube()
 {
@@ -148,7 +155,98 @@ void Cube::solve()	//todo
 	
 }
 
+void Cube::saveMove(std::vector<std::vector<Cube::Color>>& face, bool clockwise)
+{
+	if (clockwise)
+	{
+		if (face == Cube::whiteFace)
+			listOfMoves.push_front(move::whiteCW);
+		else if (face == Cube::greenFace)
+			listOfMoves.push_front(move::greenCW);
+		else if (face == Cube::orangeFace)
+			listOfMoves.push_front(move::orangeCW);
+		else if (face == Cube::yellowFace)
+			listOfMoves.push_front(move::yellowCW);
+		else if (face == Cube::blueFace)
+			listOfMoves.push_front(move::blueCW);
+		else if (face == Cube::redFace)
+			listOfMoves.push_front(move::redCW);
+	}
+	else
+	{
+		if (face == Cube::whiteFace)
+			listOfMoves.push_front(move::whiteCCW);
+		else if (face == Cube::greenFace)
+			listOfMoves.push_front(move::greenCCW);
+		else if (face == Cube::orangeFace)
+			listOfMoves.push_front(move::orangeCCW);
+		else if (face == Cube::yellowFace)
+			listOfMoves.push_front(move::yellowCCW);
+		else if (face == Cube::blueFace)
+			listOfMoves.push_front(move::blueCCW);
+		else if (face == Cube::redFace)
+			listOfMoves.push_front(move::redCCW);
+	}
+}
+
+void Cube::undo()
+{
+	if (listOfMoves.empty())
+		return;
+
+	move temp = listOfMoves.front();
+
+	if (temp == move::whiteCW)
+		undoFace(whiteFace, false);
+	else if (temp == move::whiteCCW)
+		undoFace(whiteFace, true);
+	else if (temp == move::greenCW)
+		undoFace(greenFace, false);
+	else if (temp == move::greenCCW)
+		undoFace(greenFace, true);
+	else if (temp == move::orangeCW)
+		undoFace(orangeFace, false);
+	else if (temp == move::orangeCCW)
+		undoFace(orangeFace, true);
+	else if (temp == move::yellowCW)
+		undoFace(yellowFace, false);
+	else if (temp == move::yellowCCW)
+		undoFace(yellowFace, true);
+	else if (temp == move::blueCW)
+		undoFace(blueFace, false);
+	else if (temp == move::blueCCW)
+		undoFace(blueFace, true);
+	else if (temp == move::redCW)
+		undoFace(redFace, false);
+	else if (temp == move::redCCW)
+		undoFace(redFace, true);
+
+	listOfMoves.pop_front();
+
+
+}
+
 void Cube::rotateFace(std::vector<std::vector<Cube::Color>>& face, bool clockwise)
+{
+	if (clockwise)
+	{
+		rotateFront(face);
+		rotateEdges(face);
+		saveMove(face, clockwise);
+	}
+	else
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			rotateFront(face);
+			rotateEdges(face);
+		}
+		saveMove(face, clockwise);
+	}
+
+}
+
+void Cube::undoFace(std::vector<std::vector<Cube::Color>>& face, bool clockwise)
 {
 	if (clockwise)
 	{

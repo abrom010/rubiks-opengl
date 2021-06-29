@@ -47,10 +47,10 @@ RGBA GetColorValue(Cube::Color color)
 		value = { 1.0f, 1.0f, 1.0f, 1.0f };
 		break;
 	case Cube::Color::green:
-		value = { 0.0f, 1.0f, 0.0f, 1.0f };
+		value = { 0.0f, 0.6f, 0.0f, 1.0f };
 		break;
 	case Cube::Color::orange:
-		value = { 1.0f, 0.65f, 0.0f, 1.0f };
+		value = { 0.95f, 0.50f, 0.0f, 1.0f };
 		break;
 	case Cube::Color::yellow:
 		value = { 1.0f, 1.0f, 0.0f, 1.0f };
