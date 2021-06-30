@@ -74,13 +74,13 @@ void Renderer::DrawRubiks(const Cube& cube)
 	squareLayout.Push<float>(2);
 	va.AddBuffer(squareVertexBuffer, squareLayout);
 
-	VertexBuffer borderVertexBuffer(borderVertices, 2 * 8 * sizeof(float));
+	VertexBuffer borderVertexBuffer(borderVertices, 2 * 16 * sizeof(float));
 	VertexBufferLayout borderLayout;
 	borderLayout.Push<float>(2);
 	va.AddBuffer(borderVertexBuffer, borderLayout);
 
 	IndexBuffer squareIndexBuffer(squareIndices, 6);		// 6 per square
-	IndexBuffer borderIndexBuffer(borderIndices, 6 * 4);
+	IndexBuffer borderIndexBuffer(borderIndices, 6 * 8);
 
 	Shader shader("shaders/vertex.shader", "shaders/fragment.shader");
 
@@ -90,14 +90,16 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 	glm::mat4 view = arcball.transform();
 
+	float unit = 2.0f;
+
 	for (int j = 0; j < 3; j++) // front
 	{
 		for (int i = 0; i < 3; i++)
 		{
 			glm::mat4 model = glm::mat4(1.0f);
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.5f));
-			model = glm::translate(model, glm::vec3(-2.25f + i * 2.25f, -2.25f + j * 2.25f, 0));
+			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
@@ -105,8 +107,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			RGBA color = GetColorValue(cube.whiteFace[i][j]);
 
 			//draw square
-			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, squareIndexBuffer, shader);*/
+			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);
 
 			//draw border
 			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
@@ -124,8 +126,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, -1.5708f, glm::vec3(1, 0, 0));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 0, 1));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.5f));
-			model = glm::translate(model, glm::vec3(-2.25f + i * 2.25f, -2.25f + j * 2.25f, 0));
+			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
@@ -133,8 +135,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			RGBA color = GetColorValue(cube.blueFace[i][j]);
 			
 			//draw square
-			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, squareIndexBuffer, shader);*/
+			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);
 
 			//draw border
 			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
@@ -152,8 +154,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, 1.5708f, glm::vec3(1, 0, 0));
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.5f));
-			model = glm::translate(model, glm::vec3(-2.25f + i * 2.25f, -2.25f + j * 2.25f, 0));
+			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
@@ -161,8 +163,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			RGBA color = GetColorValue(cube.greenFace[i][j]);
 			
 			//draw square
-			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, squareIndexBuffer, shader);*/
+			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);
 
 			//draw border
 			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
@@ -178,8 +180,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 			model = glm::rotate(model, 3.14159f, glm::vec3(1, 0, 0));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.5f));
-			model = glm::translate(model, glm::vec3(-2.25f + i * 2.25f, -2.25f + j * 2.25f, 0));
+			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
@@ -187,8 +189,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			RGBA color = GetColorValue(cube.yellowFace[i][j]);
 			
 			//draw square
-			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, squareIndexBuffer, shader);*/
+			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);
 
 			//draw border
 			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
@@ -205,8 +207,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 1, 0));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.5f));
-			model = glm::translate(model, glm::vec3(-2.25f + i * 2.25f, -2.25f + j * 2.25f, 0));
+			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
@@ -214,8 +216,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			RGBA color = GetColorValue(cube.redFace[i][j]);
 			
 			//draw square
-			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, squareIndexBuffer, shader);*/
+			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);
 
 			//draw border
 			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
@@ -232,8 +234,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 1, 0));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.5f));
-			model = glm::translate(model, glm::vec3(-2.25f + i * 2.25f, -2.25f + j * 2.25f, 0));
+			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
@@ -241,8 +243,8 @@ void Renderer::DrawRubiks(const Cube& cube)
 			RGBA color = GetColorValue(cube.orangeFace[i][j]);
 			
 			//draw square
-			/*shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
-			Draw(va, squareIndexBuffer, shader);*/
+			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+			Draw(va, squareIndexBuffer, shader);
 
 			//draw border
 			shader.SetUniform4f("u_Color", 0.0f, 0.0f, 0.0f, 1.0f);
