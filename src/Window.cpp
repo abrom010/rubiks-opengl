@@ -9,12 +9,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}
-
 Window::Window(int width, int height, const char* title, Cube& cube)
 	: lastCursorX(0), lastCursorY(0), isDragging(false), width(width), height(height), cube(cube), w(false), y(false), g(false), b(false), r(false), o(false), s(false), u(false)
 {
@@ -30,7 +24,6 @@ Window::Window(int width, int height, const char* title, Cube& cube)
 		glfwSetWindowShouldClose(this->glfwWindow, true);
 	}
 	glfwMakeContextCurrent(this->glfwWindow);
-	glfwSetFramebufferSizeCallback(this->glfwWindow, framebuffer_size_callback);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
