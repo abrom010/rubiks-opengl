@@ -13,6 +13,8 @@
 Renderer::Renderer(int width, int height)
 	: width(width), height(height)
 {
+	this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.38f, 0.0f));
+	this->arcball.rotate(glm::vec2(0.0f,0.0f), glm::vec2(0.0f, -0.2f));
 }
 
 Renderer::~Renderer()
@@ -88,7 +90,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)width / (GLfloat)height, 1.0f, 100.0f);
 
-	glm::mat4 view = arcball.transform();
+	glm::mat4 view = this->arcball.transform();
 
 	float unit = 2.0f;
 
@@ -98,7 +100,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 		{
 			glm::mat4 model = glm::mat4(1.0f);
 
-			model = glm::translate(model, glm::vec3(0, 0, (unit*3)/2));
+			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
@@ -126,7 +128,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, -1.5708f, glm::vec3(1, 0, 0));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 0, 1));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
@@ -154,7 +156,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, 1.5708f, glm::vec3(1, 0, 0));
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
@@ -180,7 +182,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 			model = glm::rotate(model, 3.14159f, glm::vec3(1, 0, 0));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
@@ -207,7 +209,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 1, 0));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
@@ -234,7 +236,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 1, 0));
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
