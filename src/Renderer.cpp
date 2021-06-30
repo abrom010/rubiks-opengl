@@ -98,7 +98,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 		{
 			glm::mat4 model = glm::mat4(1.0f);
 
-			model = glm::translate(model, glm::vec3(0, 0, 3.0f));
+			model = glm::translate(model, glm::vec3(0, 0, (unit*3)/2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
 			glm::mat4 mvp = projection * view * model;
