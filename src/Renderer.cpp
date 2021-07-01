@@ -88,6 +88,13 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 	//float cameraDistance = -12.25f;
 
+	shader.Bind();
+	shader.SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
+	glm::vec3 cameraPos = arcball.eye();
+	glm::vec3 lightPos = glm::vec3(cameraPos.x, cameraPos.y + 3.0f, cameraPos.z);
+	//shader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
+	shader.SetUniform3f("viewPos", cameraPos.x, cameraPos.y, cameraPos.z);
+
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)width / (GLfloat)height, 1.0f, 100.0f);
 
 	glm::mat4 view = this->arcball.transform();
@@ -103,9 +110,13 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
-			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
-			shader.SetUniformMat4f("u_MVP", mvp);
+			shader.SetUniformMat4f("model", model);
+			shader.SetUniformMat4f("view", view);
+			shader.SetUniformMat4f("projection", projection);
+
+			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
+
 			RGBA color = GetColorValue(cube.whiteFace[i][j]);
 
 			//draw square
@@ -131,9 +142,13 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
-			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
-			shader.SetUniformMat4f("u_MVP", mvp);
+			shader.SetUniformMat4f("model", model);
+			shader.SetUniformMat4f("view", view);
+			shader.SetUniformMat4f("projection", projection);
+
+			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
+
 			RGBA color = GetColorValue(cube.blueFace[i][j]);
 			
 			//draw square
@@ -159,9 +174,13 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
-			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
-			shader.SetUniformMat4f("u_MVP", mvp);
+			shader.SetUniformMat4f("model", model);
+			shader.SetUniformMat4f("view", view);
+			shader.SetUniformMat4f("projection", projection);
+
+			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
+
 			RGBA color = GetColorValue(cube.greenFace[i][j]);
 			
 			//draw square
@@ -185,9 +204,13 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
-			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
-			shader.SetUniformMat4f("u_MVP", mvp);
+			shader.SetUniformMat4f("model", model);
+			shader.SetUniformMat4f("view", view);
+			shader.SetUniformMat4f("projection", projection);
+
+			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
+
 			RGBA color = GetColorValue(cube.yellowFace[i][j]);
 			
 			//draw square
@@ -212,9 +235,11 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
-			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
-			shader.SetUniformMat4f("u_MVP", mvp);
+			shader.SetUniformMat4f("model", model);
+			shader.SetUniformMat4f("view", view);
+			shader.SetUniformMat4f("projection", projection);
+
 			RGBA color = GetColorValue(cube.redFace[i][j]);
 			
 			//draw square
@@ -239,11 +264,15 @@ void Renderer::DrawRubiks(const Cube& cube)
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
 
-			glm::mat4 mvp = projection * view * model;
 			shader.Bind();
-			shader.SetUniformMat4f("u_MVP", mvp);
+			shader.SetUniformMat4f("model", model);
+			shader.SetUniformMat4f("view", view);
+			shader.SetUniformMat4f("projection", projection);
+
+			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
+
 			RGBA color = GetColorValue(cube.orangeFace[i][j]);
-			
+
 			//draw square
 			shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 			Draw(va, squareIndexBuffer, shader);
