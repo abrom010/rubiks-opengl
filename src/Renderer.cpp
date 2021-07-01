@@ -13,8 +13,8 @@
 Renderer::Renderer(int width, int height)
 	: width(width), height(height)
 {
-	/*this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.38f, 0.0f));
-	this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, -0.2f));*/
+	this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.38f, 0.0f));
+	this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, -0.2f));
 }
 
 Renderer::~Renderer()
@@ -87,13 +87,6 @@ void Renderer::DrawRubiks(const Cube& cube)
 	Shader shader("shaders/vertex.shader", "shaders/fragment.shader");
 
 	float cameraDistance = -5.0f;
-
-	shader.Bind();
-	/*shader.SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);*/
-	/*glm::vec3 cameraPos = arcball.eye();*/
-	/*glm::vec3 lightPos = glm::vec3(0.0f, 3.0f, 0.0f);
-	shader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
-	shader.SetUniform3f("viewPos", cameraPos.x, cameraPos.y, cameraPos.z);*/
 
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)width / (GLfloat)height, 1.0f, 100.0f);
 

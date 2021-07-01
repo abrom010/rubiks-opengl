@@ -19,7 +19,7 @@ int main()
 	{
 		window.ProcessInput(renderer);
 
-		renderer.Clear(0.2f, 0.2f, 0.2f, 1.0f);
+		renderer.Clear(0.7f, 1.0f, 1.0f, 1.0f);
 		renderer.DrawRubiks(cube);
 
 		window.Update();
