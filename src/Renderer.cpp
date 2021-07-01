@@ -13,8 +13,8 @@
 Renderer::Renderer(int width, int height)
 	: width(width), height(height)
 {
-	this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.38f, 0.0f));
-	this->arcball.rotate(glm::vec2(0.0f,0.0f), glm::vec2(0.0f, -0.2f));
+	/*this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.38f, 0.0f));
+	this->arcball.rotate(glm::vec2(0.0f, 0.0f), glm::vec2(0.0f, -0.2f));*/
 }
 
 Renderer::~Renderer()
@@ -86,18 +86,20 @@ void Renderer::DrawRubiks(const Cube& cube)
 
 	Shader shader("shaders/vertex.shader", "shaders/fragment.shader");
 
-	//float cameraDistance = -12.25f;
+	float cameraDistance = -5.0f;
 
 	shader.Bind();
-	shader.SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
-	glm::vec3 cameraPos = arcball.eye();
-	glm::vec3 lightPos = glm::vec3(cameraPos.x, cameraPos.y + 3.0f, cameraPos.z);
-	//shader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
-	shader.SetUniform3f("viewPos", cameraPos.x, cameraPos.y, cameraPos.z);
+	/*shader.SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);*/
+	/*glm::vec3 cameraPos = arcball.eye();*/
+	/*glm::vec3 lightPos = glm::vec3(0.0f, 3.0f, 0.0f);
+	shader.SetUniform3f("lightPos", lightPos.x, lightPos.y, lightPos.z);
+	shader.SetUniform3f("viewPos", cameraPos.x, cameraPos.y, cameraPos.z);*/
 
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)width / (GLfloat)height, 1.0f, 100.0f);
 
-	glm::mat4 view = this->arcball.transform();
+	//glm::mat4 view = this->arcball.transform();
+	glm::mat4 view = glm::mat4(1.0);
+	view = glm::translate(view, glm::vec3(0, 0, cameraDistance));
 
 	float unit = 2.0f;
 
@@ -105,7 +107,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			glm::mat4 model = glm::mat4(1.0f);
+			glm::mat4 model = this->arcball.transform();
 
 			model = glm::translate(model, glm::vec3(0, 0, (unit * 3) / 2));
 			model = glm::translate(model, glm::vec3(-unit + i * unit, -unit + j * unit, 0));
@@ -114,8 +116,6 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.SetUniformMat4f("model", model);
 			shader.SetUniformMat4f("view", view);
 			shader.SetUniformMat4f("projection", projection);
-
-			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
 
 			RGBA color = GetColorValue(cube.whiteFace[i][j]);
 
@@ -133,7 +133,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			glm::mat4 model = glm::mat4(1.0f);
+			glm::mat4 model = this->arcball.transform();
 
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, -1.5708f, glm::vec3(1, 0, 0));
@@ -146,8 +146,6 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.SetUniformMat4f("model", model);
 			shader.SetUniformMat4f("view", view);
 			shader.SetUniformMat4f("projection", projection);
-
-			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
 
 			RGBA color = GetColorValue(cube.blueFace[i][j]);
 			
@@ -165,7 +163,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			glm::mat4 model = glm::mat4(1.0f);
+			glm::mat4 model = this->arcball.transform();
 
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(1, 0, 0));
@@ -178,8 +176,6 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.SetUniformMat4f("model", model);
 			shader.SetUniformMat4f("view", view);
 			shader.SetUniformMat4f("projection", projection);
-
-			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
 
 			RGBA color = GetColorValue(cube.greenFace[i][j]);
 			
@@ -197,7 +193,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			glm::mat4 model = glm::mat4(1.0f);
+			glm::mat4 model = this->arcball.transform();
 
 			model = glm::rotate(model, 3.14159f, glm::vec3(1, 0, 0));
 
@@ -208,8 +204,6 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.SetUniformMat4f("model", model);
 			shader.SetUniformMat4f("view", view);
 			shader.SetUniformMat4f("projection", projection);
-
-			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
 
 			RGBA color = GetColorValue(cube.yellowFace[i][j]);
 			
@@ -227,7 +221,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			glm::mat4 model = glm::mat4(1.0f);
+			glm::mat4 model = this->arcball.transform();
 
 			model = glm::rotate(model, -1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 1, 0));
@@ -256,7 +250,7 @@ void Renderer::DrawRubiks(const Cube& cube)
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			glm::mat4 model = glm::mat4(1.0f);
+			glm::mat4 model = this->arcball.transform();
 
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 0, 1));
 			model = glm::rotate(model, 1.5708f, glm::vec3(0, 1, 0));
@@ -268,8 +262,6 @@ void Renderer::DrawRubiks(const Cube& cube)
 			shader.SetUniformMat4f("model", model);
 			shader.SetUniformMat4f("view", view);
 			shader.SetUniformMat4f("projection", projection);
-
-			shader.SetUniform3f("normal", 0.0f, 0.0f, 1.0f);
 
 			RGBA color = GetColorValue(cube.orangeFace[i][j]);
 

@@ -8,11 +8,11 @@ uniform mat4 projection;
 uniform vec4 u_Color;
 
 out vec4 vertexColor;
-out vec3 fragPos;
+//out vec3 fragPos;
 
 void main()
 {
     gl_Position = projection * view * model * vec4(position, 1.0);
-	fragPos = vec3(model * vec4(position, 1.0f));
+	//fragPos = vec3(model * vec4(position, 1.0f));
 	vertexColor = u_Color;
 }
